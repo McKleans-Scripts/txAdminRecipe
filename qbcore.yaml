@@ -1,7 +1,7 @@
 $engine: 3
 $onesync: on
 name: QBCore Server by McKleans-Scripts
-version: 2.2.4
+version: 1.0.0
 author: McKleans-Scripts
 description: An advanced FiveM RP framework including jobs, gangs, housing & more!
 
@@ -116,17 +116,17 @@ tasks:
 
     # MAPS
   - action: download_github
-    dest: ./resources/[defaultmaps]/hospital_map
+    dest: ./resources/[maps]/hospital_map
     ref: main
     src: https://github.com/qbcore-framework/hospital_map
 
   - action: download_github
-    dest: ./resources/[defaultmaps]/dealer_map
+    dest: ./resources/[maps]/dealer_map
     ref: main
     src: https://github.com/qbcore-framework/dealer_map
 
   - action: download_github
-    dest: ./resources/[defaultmaps]/[prison_map]
+    dest: ./resources/[maps]/[prison_map]
     ref: main
     src: https://github.com/qbcore-framework/prison_map
 
@@ -149,16 +149,16 @@ tasks:
     ref: main
     src: https://github.com/overextended/ox_doorlock
 
+  - action: download_github
+    dest: ./resources/[ox]/ox_inventory
+    ref: main
+    src: https://github.com/overextended/ox_inventory
+
   # Downloading QBCore resources
   - action: download_github
     dest: ./resources/[qb]/qb-core
     ref: main
     src: https://github.com/qbcore-framework/qb-core
-
-  - action: download_github
-    dest: ./resources/[qb]/qb-scoreboard
-    ref: main
-    src: https://github.com/qbcore-framework/qb-scoreboard
 
   - action: download_github
     dest: ./resources/[qb]/qb-multicharacter
@@ -241,16 +241,6 @@ tasks:
     ref: main
     src: https://github.com/qbcore-framework/qb-vehiclekeys
 
-  - action: download_github # honestly pretty useless, use jim-mech instead
-    dest: ./resources/[qb]/qb-mechanicjob
-    ref: main
-    src: https://github.com/qbcore-framework/qb-mechanicjob
-
-  - action: download_github # honestly pretty useless
-    dest: ./resources/[qb]/qb-vineyard
-    ref: main
-    src: https://github.com/qbcore-framework/qb-vineyard
-
   - action: waste_time # prevent github throttling
     seconds: 10
 
@@ -289,11 +279,6 @@ tasks:
     ref: main
     src: https://github.com/qbcore-framework/qb-smallresources
 
-  - action: download_github # recommend purchasing mk-courthouse, more optamised and does more
-    dest: ./resources/[qb]/qb-cityhall
-    ref: main
-    src: https://github.com/qbcore-framework/qb-cityhall
-
   - action: download_github
     dest: ./resources/[qb]/qb-truckrobbery
     ref: main
@@ -315,7 +300,7 @@ tasks:
     src: https://github.com/qbcore-framework/qb-newsjob
 
   - action: download_github
-    dest: ./resources/[scripts]/[Holidayy]/qb-jewelery
+    dest: ./resources/[Holidayy]/qb-jewelery
     ref: main
     src: https://github.com/Holidayy95/qb-jewelery
 
@@ -333,7 +318,7 @@ tasks:
     src: https://github.com/qbcore-framework/qb-truckerjob
 
   - action: download_github
-    dest: ./resources/[qb]/qb-keyminigame
+    dest: ./resources/[minigames]/qb-keyminigame
     ref: main
     src: https://github.com/qbcore-framework/qb-keyminigame
 
@@ -361,147 +346,142 @@ tasks:
   # Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/chat
+    dest: ./resources/[standalone]/chat
     ref: main
     src: https://github.com/Brichka-Dv/chat
 
   # Redline Studios
 
   - action: download_github
-    dest: ./resources/[scripts]/[redline-studios]/rs-prison
+    dest: ./resources/[redline-studios]/rs-prison
     ref: main
     src: https://github.com/Redline-Studios/rs-prison
 
 
   # Project Sloth
 
-  - action: download_github
-    dest: ./resources/[scripts]/[Project-Sloth]/ps-adminmenu
+  - action: download_github ## I personally prefer using Snipe-Adminmenu
+    dest: ./resources/[Project-Sloth]/ps-adminmenu
     ref: main
     src: https://github.com/Project-Sloth/ps-adminmenu
 
   - action: download_github
-    dest: ./resources/[scripts]/[Project-Sloth]/ps-hud
+    dest: ./resources/[Project-Sloth]/ps-hud
     ref: main
     src: https://github.com/Project-Sloth/ps-hud
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-housing
+      dest: ./resources/[Project-Sloth]/ps-housing
       ref: main
       src: https://github.com/Project-Sloth/ps-housing
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-realtor
+      dest: ./resources/[Project-Sloth]/ps-realtor
       ref: main
       src: https://github.com/Project-Sloth/ps-realtor
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-mdt
+      dest: ./resources/[Project-Sloth]/ps-mdt
       ref: main
       src: https://github.com/Project-Sloth/ps-mdt
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-dispatch
+      dest: ./resources/[Project-Sloth]/ps-dispatch
       ref: main
       src: https://github.com/Project-Sloth/ps-dispatch
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-inventory
+      dest: ./resources/[Project-Sloth]/ps-buffs
       ref: main
-      src: https://github.com/Project-Sloth/ps-inventory
+      src: https://github.com/Project-Sloth/ps-buffs
 
   - action: download_github
-    dest: ./resources/[scripts]/[Project-Sloth]/ps-buffs
-    ref: main
-    src: https://github.com/Project-Sloth/ps-buffs
-
-  - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-ui
+      dest: ./resources/[Project-Sloth]/ps-ui
       ref: main
       src: https://github.com/Project-Sloth/ps-ui
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-fuel
+      dest: ./resources/[Project-Sloth]/ps-fuel
       ref: main
       src: https://github.com/Project-Sloth/ps-fuel
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-camera
+      dest: ./resources/[Project-Sloth]/ps-camera
       ref: main
       src: https://github.com/Project-Sloth/ps-camera
 
   - action: waste_time # prevent github throttling
     seconds: 10
 
-  - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-weedplanting
+  - action: download_github ## Would personally prefer Snipe-weedplanting
+      dest: ./resources/[Project-Sloth]/ps-weedplanting
       ref: main
       src: https://github.com/Project-Sloth/ps-weedplanting
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-multijob
+      dest: ./resources/[Project-Sloth]/ps-multijob
       ref: main
       src: https://github.com/Project-Sloth/ps-multijob
 
   - action: download_github
-    dest: ./resources/[scripts]/[Project-Sloth]/ps-liveries
-    ref: main
-    src: https://github.com/Project-Sloth/ps-liveries
+      dest: ./resources/[Project-Sloth]/ps-liveries
+      ref: main
+      src: https://github.com/Project-Sloth/ps-liveries
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-props
+      dest: ./resources/[Project-Sloth]/ps-props
       ref: main
       src: https://github.com/Project-Sloth/ps-props
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-bling
+      dest: ./resources/[Project-Sloth]/ps-bling
       ref: main
       src: https://github.com/Project-Sloth/ps-bling
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-walkingstyle
+      dest: ./resources/[Project-Sloth]/ps-walkingstyle
       ref: main
       src: https://github.com/Project-Sloth/ps-walkingstyle
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-signrobbery
+      dest: ./resources/[Project-Sloth]/ps-signrobbery
       ref: main
       src: https://github.com/Project-Sloth/ps-signrobbery
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-microphone
+      dest: ./resources/[Project-Sloth]/ps-microphone
       ref: main
       src: https://github.com/Project-Sloth/ps-microphone
 
   - action: download_github
-    dest: ./resources/[scripts]/[Project-Sloth]/ps-donator
-    ref: main
-    src: https://github.com/Project-Sloth/ps-donator
+      dest: ./resources/[Project-Sloth]/ps-donator
+      ref: main
+      src: https://github.com/Project-Sloth/ps-donator
 
   - action: download_github
-      dest: ./resources/[scripts]/[Project-Sloth]/ps-loading
+      dest: ./resources/[Project-Sloth]/ps-loading
       ref: main
       src: https://github.com/Project-Sloth/ps-loading
 
   # Renewed Scripts
   
   - action: download_github
-    dest: ./resources/[scripts]/[renewed-scripts]/qb-phone
+    dest: ./resources/[renewed-scripts]/qb-phone
     ref: main
     src: https://github.com/Renewed-Scripts/qb-phone
 
   - action: download_github
-    dest: ./resources/[scripts]/[renewed-scripts]/Renewed-Banking
+    dest: ./resources/[renewed-scripts]/Renewed-Banking
     ref: main
     src: https://github.com/Renewed-Scripts/Renewed-Banking
 
   - action: download_github
-    dest: ./resources/[scripts]/[renewed-scripts]/Renewed-Weaponscarry
+    dest: ./resources/[renewed-scripts]/Renewed-Weaponscarry
     ref: main
     src: https://github.com/Renewed-Scripts/Renewed-Weaponscarry
 
   - action: download_github
-    dest: ./resources/[scripts]/[renewed-scripts]/Renewed-Sirensync
+    dest: ./resources/[renewed-scripts]/Renewed-Sirensync
     ref: main
     src: https://github.com/Renewed-Scripts/Renewed-Sirensync
 
@@ -511,92 +491,97 @@ tasks:
   # Jixels Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels-extra]/jim_bridge
+    dest: ./resources/[standalone]/jim_bridge
     ref: main
     src: https://github.com/jimathy/jim_bridge
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels-extra]/jim-consumables
+    dest: ./resources/[standalone]/jim-consumables
     ref: main
     src: https://github.com/jimathy/jim-consumables
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/qb-input
+    dest: ./resources/[jim]/qb-input
     ref: main
     src: https://github.com/jimathy/qb-input
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/qb-menu
+    dest: ./resources/[jim]/qb-menu
     ref: main
     src: https://github.com/jimathy/jixel-menu
   
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-recycle
+    dest: ./resources/[jim]/jim-recycle
     ref: main
     src: https://github.com/jimathy/jim-recycle
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-payments
+    dest: ./resources/[jim]/jim-payments
     ref: main
     src: https://github.com/jimathy/jim-payments
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-mining
+    dest: ./resources/[jim]/jim-mining
     ref: main
     src: https://github.com/jimathy/jim-mining
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-shops
+    dest: ./resources/[jim]/jim-shops
     ref: main
     src: https://github.com/jimathy/jim-shops
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-chairs
+    dest: ./resources/[jim]/jim-chairs
     ref: main
     src: https://github.com/jimathy/jim-chairs
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-jobgarage
+    dest: ./resources/[jim]/jim-jobgarage
     ref: main
     src: https://github.com/jimathy/jim-jobgarage
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-djbooth
+    dest: ./resources/[jim]/jim-djbooth
     ref: main
     src: https://github.com/jimathy/jim-djbooth
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-notepad
+    dest: ./resources/[jim]/jim-notepad
     ref: main
     src: https://github.com/jimathy/jim-notepad
 
   - action: download_github
-    dest: ./resources/[scripts]/[jixels]/jim-skateboard
+    dest: ./resources/[jim]/jim-skateboard
     ref: main
     src: https://github.com/jimathy/jim-skateboard
+
+  - action: download_github
+    dest: ./resources/[jim]/jim-trains
+    ref: main
+    src: https://github.com/jimathy/jim-trains
 
 
   # McKleans Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[McKleans-Scripts]/mk-ammoboxes
+    dest: ./resources/[McKleans-Scripts]/mk-ammoboxes
     ref: main
     src: https://github.com/McKleans-Scripts/mk-ammoboxes
 
   # Dom/Bostra Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[mustachedom]/md-drugs
+    dest: ./resources/[mustachedom]/md-drugs
     ref: main
     src: https://github.com/Mustachedom/md-drugs
 
   - action: download_github
-    dest: ./resources/[scripts]/[mustachedom]/md-houserobberies
+    dest: ./resources/[mustachedom]/md-houserobberies
     ref: main
     src: https://github.com/Mustachedom/md-houserobberies
 
   - action: download_github
-    dest: ./resources/[scripts]/[mustachedom]/md-fishing
+    dest: ./resources/[mustachedom]/md-fishing
     ref: main
     src: https://github.com/Mustachedom/md-fishing
 
@@ -604,19 +589,19 @@ tasks:
   # Illenium Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[clothing]/illenium-appearance
+    dest: ./resources/[clothes]/illenium-appearance
     ref: main
     src: https://github.com/iLLeniumStudios/illenium-appearance
 
   # TNJ Development
 
   - action: download_github
-    dest: ./resources/[scripts]/[clothing]/qb-masks
+    dest: ./resources/[clothes]/qb-masks
     ref: main
     src: https://github.com/tnj-development/qb-masks
 
   - action: download_github
-    dest: ./resources/[scripts]/[tnj-development]/tnj-stealshoes
+    dest: ./resources/[tnj-development]/tnj-stealshoes
     ref: main
     src: https://github.com/tnj-development/tnj-stealshoes
 
@@ -626,22 +611,22 @@ tasks:
   # Keep Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[keep]/keep-bags
+    dest: ./resources/[keep]/keep-bags
     ref: main
     src: https://github.com/swkeep/keep-bags
 
   - action: download_github
-    dest: ./resources/[scripts]/[keep]/keep-companion
+    dest: ./resources/[keep]/keep-companion
     ref: main
     src: https://github.com/swkeep/keep-companion
 
   - action: download_github
-    dest: ./resources/[scripts]/[keep]/keep-containers
+    dest: ./resources/[keep]/keep-containers
     ref: main
     src: https://github.com/swkeep/keep-containers
 
   - action: download_github
-    dest: ./resources/[scripts]/[keep]/keep-gunrack
+    dest: ./resources/[keep]/keep-gunrack
     ref: main
     src: https://github.com/swkeep/keep-gunrack
 
@@ -649,12 +634,12 @@ tasks:
   # Randol Scripts
 
   - action: download_github
-    dest: ./resources/[scripts]/[randol]/randol_moneywash
+    dest: ./resources/[randol]/randol_moneywash
     ref: main
     src: https://github.com/Randolio/randol_moneywash
 
   - action: download_github
-    dest: ./resources/[scripts]/[randol]/randol_paycheck
+    dest: ./resources/[randol]/randol_paycheck
     ref: main
     src: https://github.com/Randolio/randol_paycheck
 

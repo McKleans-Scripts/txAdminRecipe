@@ -1,358 +1,295 @@
 CREATE TABLE IF NOT EXISTS `apartments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `citizenid` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) DEFAULT (NULL),
+  `type` VARCHAR(255) DEFAULT (NULL),
+  `label` VARCHAR(255) DEFAULT (NULL),
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
   KEY `citizenid` (`citizenid`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `bank_accounts` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `account_name` VARCHAR(50) DEFAULT (NULL),
+  `account_balance` INT(11) NOT NULL DEFAULT 0,
+  `account_type` ENUM('shared','job','gang') NOT NULL,
+  `users` LONGTEXT DEFAULT ('[]'),
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `account_name` (`account_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `bank_statements` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `account_name` VARCHAR(50) DEFAULT ('checking'),
+  `amount` INT(11) DEFAULT (NULL),
+  `reason` VARCHAR(50) DEFAULT (NULL),
+  `statement_type` ENUM('deposit','withdraw') DEFAULT (NULL),
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `citizenid` (`citizenid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `bans` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `license` varchar(50) DEFAULT NULL,
-  `discord` varchar(50) DEFAULT NULL,
-  `ip` varchar(50) DEFAULT NULL,
-  `reason` text DEFAULT NULL,
-  `expire` int(11) DEFAULT NULL,
-  `bannedby` varchar(255) NOT NULL DEFAULT 'LeBanhammer',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) DEFAULT (NULL),
+  `license` VARCHAR(50) DEFAULT (NULL),
+  `discord` VARCHAR(50) DEFAULT (NULL),
+  `ip` VARCHAR(50) DEFAULT (NULL),
+  `reason` TEXT DEFAULT (NULL),
+  `expire` INT(11) DEFAULT (NULL),
+  `bannedby` VARCHAR(255) NOT NULL DEFAULT 'LeBanhammer',
   PRIMARY KEY (`id`),
   KEY `license` (`license`),
   KEY `discord` (`discord`),
   KEY `ip` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `crypto` (
-  `crypto` varchar(50) NOT NULL DEFAULT 'qbit',
-  `worth` int(11) NOT NULL DEFAULT 0,
-  `history` text DEFAULT NULL,
+  `crypto` VARCHAR(50) NOT NULL DEFAULT 'qbit',
+  `worth` INT(11) NOT NULL DEFAULT 0,
+  `history` TEXT DEFAULT (NULL),
   PRIMARY KEY (`crypto`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `crypto_transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  `message` varchar(50) DEFAULT NULL,
-  `date` timestamp NULL DEFAULT current_timestamp(),
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `title` VARCHAR(50) DEFAULT (NULL),
+  `message` VARCHAR(50) DEFAULT (NULL),
+  `date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `dealers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '0',
-  `coords` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `time` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `createdby` varchar(50) NOT NULL DEFAULT '0',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL DEFAULT '0',
+  `coords` LONGTEXT DEFAULT (NULL),
+  `time` LONGTEXT DEFAULT (NULL),
+  `createdby` VARCHAR(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `houselocations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `coords` text DEFAULT NULL,
-  `owned` tinyint(1) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `tier` tinyint(4) DEFAULT NULL,
-  `garage` text DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) DEFAULT (NULL),
+  `label` VARCHAR(255) DEFAULT (NULL),
+  `coords` TEXT DEFAULT (NULL),
+  `owned` TINYINT(1) DEFAULT (NULL),
+  `price` INT(11) DEFAULT (NULL),
+  `tier` TINYINT(4) DEFAULT (NULL),
+  `garage` TEXT DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_houses` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `house` varchar(50) NOT NULL,
-  `identifier` varchar(50) DEFAULT NULL,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `keyholders` text DEFAULT NULL,
-  `decorations` text DEFAULT NULL,
-  `stash` text DEFAULT NULL,
-  `outfit` text DEFAULT NULL,
-  `logout` text DEFAULT NULL,
+  `id` INT(255) NOT NULL AUTO_INCREMENT,
+  `house` VARCHAR(50) NOT NULL,
+  `identifier` VARCHAR(50) DEFAULT (NULL),
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `keyholders` TEXT DEFAULT (NULL),
+  `decorations` TEXT DEFAULT (NULL),
+  `stash` TEXT DEFAULT (NULL),
+  `outfit` TEXT DEFAULT (NULL),
+  `logout` TEXT DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `house` (`house`),
   KEY `citizenid` (`citizenid`),
   KEY `identifier` (`identifier`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `house_plants` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `building` varchar(50) DEFAULT NULL,
-  `stage` varchar(50) DEFAULT 'stage-a',
-  `sort` varchar(50) DEFAULT NULL,
-  `gender` varchar(50) DEFAULT NULL,
-  `food` int(11) DEFAULT 100,
-  `health` int(11) DEFAULT 100,
-  `progress` int(11) DEFAULT 0,
-  `coords` text DEFAULT NULL,
-  `plantid` varchar(50) DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `building` VARCHAR(50) DEFAULT (NULL),
+  `stage` INT(11) DEFAULT 1,
+  `sort` VARCHAR(50) DEFAULT (NULL),
+  `gender` VARCHAR(50) DEFAULT (NULL),
+  `food` INT(11) DEFAULT 100,
+  `health` INT(11) DEFAULT 100,
+  `progress` INT(11) DEFAULT 0,
+  `coords` TEXT DEFAULT (NULL),
+  `plantid` VARCHAR(50) DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `building` (`building`),
   KEY `plantid` (`plantid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `lapraces` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `checkpoints` text DEFAULT NULL,
-  `records` text DEFAULT NULL,
-  `creator` varchar(50) DEFAULT NULL,
-  `distance` int(11) DEFAULT NULL,
-  `raceid` varchar(50) DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) DEFAULT (NULL),
+  `checkpoints` TEXT DEFAULT (NULL),
+  `records` TEXT DEFAULT (NULL),
+  `creator` VARCHAR(50) DEFAULT (NULL),
+  `distance` INT(11) DEFAULT (NULL),
+  `raceid` VARCHAR(50) DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `raceid` (`raceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `occasion_vehicles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `seller` varchar(50) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `model` varchar(50) DEFAULT NULL,
-  `mods` text DEFAULT NULL,
-  `occasionid` varchar(50) DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `seller` VARCHAR(50) DEFAULT (NULL),
+  `price` INT(11) DEFAULT (NULL),
+  `description` LONGTEXT DEFAULT (NULL),
+  `plate` VARCHAR(50) DEFAULT (NULL),
+  `model` VARCHAR(50) DEFAULT (NULL),
+  `mods` TEXT DEFAULT (NULL),
+  `occasionid` VARCHAR(50) DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `occasionId` (`occasionid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_invoices` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `amount` int(11) NOT NULL DEFAULT 0,
-  `society` tinytext DEFAULT NULL,
-  `sender` varchar(50) DEFAULT NULL,
-  `sendercitizenid` varchar(50) DEFAULT NULL,
+  `id` INT(10) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `amount` INT(11) NOT NULL DEFAULT 0,
+  `society` TINYTEXT DEFAULT (NULL),
+  `sender` VARCHAR(50) DEFAULT (NULL),
+  `sendercitizenid` VARCHAR(50) DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_gallery` (
-   `citizenid` VARCHAR(255) NOT NULL ,
+   `citizenid` VARCHAR(11) NOT NULL ,
    `image` VARCHAR(255) NOT NULL ,
-   `date` timestamp NULL DEFAULT current_timestamp()
+   `date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP()
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_mails` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `sender` varchar(50) DEFAULT NULL,
-  `subject` varchar(50) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `read` tinyint(4) DEFAULT 0,
-  `mailid` int(11) DEFAULT NULL,
-  `date` timestamp NULL DEFAULT current_timestamp(),
-  `button` text DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `sender` VARCHAR(50) DEFAULT (NULL),
+  `subject` VARCHAR(50) DEFAULT (NULL),
+  `message` TEXT DEFAULT (NULL),
+  `read` TINYINT(4) DEFAULT 0,
+  `mailid` INT(11) DEFAULT (NULL),
+  `date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+  `button` TEXT DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_messages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `number` varchar(50) DEFAULT NULL,
-  `messages` text DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `number` VARCHAR(50) DEFAULT (NULL),
+  `messages` TEXT DEFAULT (NULL),
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`),
   KEY `number` (`number`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_tweets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `firstName` varchar(25) DEFAULT NULL,
-  `lastName` varchar(25) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `date` datetime DEFAULT current_timestamp(),
-  `url` text DEFAULT NULL,
-  `picture` varchar(512) DEFAULT './img/default.png',
-  `tweetId` varchar(25) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `firstName` VARCHAR(25) DEFAULT (NULL),
+  `lastName` VARCHAR(25) DEFAULT (NULL),
+  `message` TEXT DEFAULT (NULL),
+  `date` DATETIME DEFAULT CURRENT_TIMESTAMP(),
+  `url` TEXT DEFAULT (NULL),
+  `picture` VARCHAR(512) DEFAULT './img/default.png',
+  `tweetId` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_contacts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `number` varchar(50) DEFAULT NULL,
-  `iban` varchar(50) NOT NULL DEFAULT '0',
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `name` VARCHAR(50) DEFAULT (NULL),
+  `number` VARCHAR(50) DEFAULT (NULL),
+  `iban` VARCHAR(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) NOT NULL,
-  `cid` int(11) DEFAULT NULL,
-  `license` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `money` text NOT NULL,
-  `charinfo` text DEFAULT NULL,
-  `job` text NOT NULL,
-  `gang` text DEFAULT NULL,
-  `position` text NOT NULL,
-  `metadata` text NOT NULL,
-  `inventory` longtext DEFAULT NULL,
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) NOT NULL,
+  `cid` INT(11) DEFAULT (NULL),
+  `license` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `money` TEXT NOT NULL,
+  `charinfo` TEXT DEFAULT (NULL),
+  `job` TEXT NOT NULL,
+  `gang` TEXT DEFAULT (NULL),
+  `position` TEXT NOT NULL,
+  `metadata` TEXT NOT NULL,
+  `inventory` LONGTEXT DEFAULT (NULL),
+  `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
   PRIMARY KEY (`citizenid`),
   KEY `id` (`id`),
   KEY `last_updated` (`last_updated`),
   KEY `license` (`license`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `playerskins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(255) NOT NULL,
-  `model` varchar(255) NOT NULL,
-  `skin` text NOT NULL,
-  `active` tinyint(4) NOT NULL DEFAULT 1,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) NOT NULL,
+  `model` VARCHAR(255) NOT NULL,
+  `skin` TEXT NOT NULL,
+  `active` TINYINT(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`),
   KEY `active` (`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_outfits` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `outfitname` varchar(50) NOT NULL,
-  `model` varchar(50) DEFAULT NULL,
-  `skin` text DEFAULT NULL,
-  `outfitId` varchar(50) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `outfitname` VARCHAR(50) NOT NULL,
+  `model` VARCHAR(50) DEFAULT (NULL),
+  `skin` TEXT DEFAULT (NULL),
+  `outfitId` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`),
   KEY `outfitId` (`outfitId`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_vehicles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `license` varchar(50) DEFAULT NULL,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `vehicle` varchar(50) DEFAULT NULL,
-  `hash` varchar(50) DEFAULT NULL,
-  `mods` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `plate` varchar(50) NOT NULL,
-  `fakeplate` varchar(50) DEFAULT NULL,
-  `garage` varchar(50) DEFAULT NULL,
-  `fuel` int(11) DEFAULT 100,
-  `engine` float DEFAULT 1000,
-  `body` float DEFAULT 1000,
-  `state` int(11) DEFAULT 1,
-  `depotprice` int(11) NOT NULL DEFAULT 0,
-  `drivingdistance` int(50) DEFAULT NULL,
-  `status` text DEFAULT NULL,
-  `balance` int(11) NOT NULL DEFAULT 0,
-  `paymentamount` int(11) NOT NULL DEFAULT 0,
-  `paymentsleft` int(11) NOT NULL DEFAULT 0,
-  `financetime` int(11) NOT NULL DEFAULT 0,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `license` VARCHAR(50) DEFAULT (NULL),
+  `citizenid` VARCHAR(11) DEFAULT (NULL),
+  `vehicle` VARCHAR(50) DEFAULT (NULL),
+  `hash` VARCHAR(50) DEFAULT (NULL),
+  `mods` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT (NULL),
+  `plate` VARCHAR(8) NOT NULL,
+  `fakeplate` VARCHAR(8) DEFAULT (NULL),
+  `garage` VARCHAR(50) DEFAULT (NULL),
+  `fuel` INT(11) DEFAULT 100,
+  `engine` FLOAT DEFAULT 1000,
+  `body` FLOAT DEFAULT 1000,
+  `state` INT(11) DEFAULT 1,
+  `depotprice` INT(11) NOT NULL DEFAULT 0,
+  `drivingdistance` INT(50) DEFAULT (NULL),
+  `status` TEXT DEFAULT (NULL),
+  `balance` INT(11) NOT NULL DEFAULT 0,
+  `paymentamount` INT(11) NOT NULL DEFAULT 0,
+  `paymentsleft` INT(11) NOT NULL DEFAULT 0,
+  `financetime` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `plate` (`plate`),
   KEY `citizenid` (`citizenid`),
   KEY `license` (`license`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_warns` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `senderIdentifier` varchar(50) DEFAULT NULL,
-  `targetIdentifier` varchar(50) DEFAULT NULL,
-  `reason` text DEFAULT NULL,
-  `warnId` varchar(50) DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `senderIdentifier` VARCHAR(50) DEFAULT (NULL),
+  `targetIdentifier` VARCHAR(50) DEFAULT (NULL),
+  `reason` TEXT DEFAULT (NULL),
+  `warnId` VARCHAR(50) DEFAULT (NULL),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `bank_accounts` (
-  `record_id` bigint(255) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(250) DEFAULT NULL,
-  `business` varchar(50) DEFAULT NULL,
-  `businessid` int(11) DEFAULT NULL,
-  `gangid` varchar(50) DEFAULT NULL,
-  `amount` bigint(255) NOT NULL DEFAULT 0,
-  `account_type` enum('Current','Savings','business','Gang') NOT NULL DEFAULT 'Current',
-  PRIMARY KEY (`record_id`),
-  UNIQUE KEY `citizenid` (`citizenid`),
-  KEY `business` (`business`),
-  KEY `businessid` (`businessid`),
-  KEY `gangid` (`gangid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-CREATE TABLE IF NOT EXISTS `bank_statements` (
-  `record_id` bigint(255) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50) DEFAULT NULL,
-  `account` varchar(50) DEFAULT NULL,
-  `business` varchar(50) DEFAULT NULL,
-  `businessid` int(11) DEFAULT NULL,
-  `gangid` varchar(50) DEFAULT NULL,
-  `deposited` int(11) DEFAULT NULL,
-  `withdraw` int(11) DEFAULT NULL,
-  `balance` int(11) DEFAULT NULL,
-  `date` varchar(50) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`record_id`),
-  KEY `business` (`business`),
-  KEY `businessid` (`businessid`),
-  KEY `gangid` (`gangid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-CREATE TABLE IF NOT EXISTS `bank_cards` (
-  `record_id` bigint(255) NOT NULL AUTO_INCREMENT,
-  `citizenid` varchar(50),
-  `cardNumber` varchar(50) DEFAULT NULL,
-  `cardPin` varchar(50) DEFAULT NULL,
-  `cardActive` tinyint(4) DEFAULT 1,
-  `cardLocked` tinyint(4) DEFAULT 0,
-  `cardType` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`citizenid`),
-  KEY `record_id` (`record_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-CREATE TABLE IF NOT EXISTS `gloveboxitems` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `plate` varchar(255) NOT NULL DEFAULT '[]',
-  `items` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`plate`),
+CREATE TABLE IF NOT EXISTS `inventories` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `identifier` VARCHAR(50) NOT NULL,
+  `items` LONGTEXT DEFAULT ('[]'),
+  PRIMARY KEY (`identifier`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `stashitems` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stash` varchar(255) NOT NULL DEFAULT '[]',
-  `items` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`stash`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `trunkitems` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `plate` varchar(255) NOT NULL DEFAULT '[]',
-  `items` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`plate`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `management_funds` (
-`id` INT(11) NOT NULL AUTO_INCREMENT,
-`job_name` VARCHAR(50) NOT NULL,
-`amount`  INT(100) NOT NULL,
-`type` ENUM('boss','gang') NOT NULL DEFAULT 'boss',
-PRIMARY KEY (`id`),
-UNIQUE KEY `job_name` (`job_name`),
-KEY `type` (`type`)
-);
-
-INSERT INTO `management_funds` (`job_name`, `amount`, `type`) VALUES
-('police', 0, 'boss'),
-('ambulance', 0, 'boss'),
-('realestate', 0, 'boss'),
-('taxi', 0, 'boss'),
-('cardealer', 0, 'boss'),
-('mechanic', 0, 'boss'),
-('lostmc', 0, 'gang'),
-('ballas', 0, 'gang'),
-('vagos', 0, 'gang'),
-('cartel', 0, 'gang'),
-('families', 0, 'gang'),
-('triads', 0, 'gang');
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
