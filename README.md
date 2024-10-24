@@ -24,19 +24,18 @@ Something's are missing due to using paid assets all links to Assets I would use
 
 ## RECOMMEND PAID SCRIPTS ##
 - [Jimathy666](https://jimathy666.tebex.io/category/1967034) | Jim-Mechanic | Jim-Restaurants
-- [Jixel Tay](https://jixeltay.tebex.io/) | Jixel-Whitewidow | Jixel-Communityboards
+- [JixelTay](https://jixeltay.tebex.io/) | Jixel-Whitewidow | Jixel-Communityboards
 - [McKleans-Scripts](https://mckleans-scripts.tebex.io/category/2146367) | MK-Scoreboard | MK-Courthouse | MK-GangLyfe | MK-TopsCards
 - [Snipe-Gaming](https://snipe.tebex.io/) | Snipe-Banking | Snipe-Banking
-- 
+- [bwoscustoms](https://bwoscustoms.tebex.io/category/handling-such) | Vehicle Handling
 - 
 
 
 ## RECOMMEND PAID MAPS ##
 - [Morpheus Maps](https://morpheus-construction.tebex.io/)
 - [Gabz Maps](https://fivem.gabzv.com/)
-- [Kambi-Maps]()
+- [K4mb1-Maps](https://www.k4mb1maps.com/)
 - 
 - 
 - 
-
 
