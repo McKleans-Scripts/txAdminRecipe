@@ -1,4 +1,4 @@
-# txAdminRecipe by [McKleans-Scripts](https://mckleans-scripts.tebex.io/) | [Discord](https://discord.gg/DEWp9TP7p6) | [BuyUsAChinese](https://Ko-fi.com/mckleansscripts)
+# txAdminRecipe by [McKleans-Scripts](https://mckleans-scripts.tebex.io/) | [Discord](https://discord.gg/DEWp9TP7p6) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J1LMXYK)
 ### Forked Version of QBCORE Recipe
 
 ## Description ##
