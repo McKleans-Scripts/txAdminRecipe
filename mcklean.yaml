@@ -1,29 +1,41 @@
 $engine: 3
 $onesync: on
-name: QBCore Server by McKleans-Scripts
+name: QBCore Server
 version: 1.0.0
 author: McKleans-Scripts
-description: An advanced FiveM RP framework including jobs, gangs, housing & more!
+description: An advanced FiveM RP framework including jobs, gangs, housing & more! by McKleans-Scripts
 
 tasks:
   #  Download Base Files
   - action: download_github
-    src: https://github.com/qbcore-framework/txAdminRecipe
+    src: https://github.com/McKleans-Scripts/txAdminRecipe
     ref: main
-    dest: ./tmp/qbcore
+    dest: ./tmp/McKleans-Scripts
 
   - action: move_path
-    src: ./tmp/qbcore/server.cfg
+    src: ./tmp/McKleans-Scripts/server.cfg
     dest: ./server.cfg
+  
+  - action: move_path
+    src: ./tmp/McKleans-Scripts/config/convars.cfg
+    dest: ./config/convars.cfg
 
   - action: move_path
-    src: ./tmp/qbcore/myLogo.png
+    src: ./tmp/McKleans-Scripts/config/ensures.cfg
+    dest: ./config/ensures.cfg
+
+  - action: move_path
+    src: ./tmp/McKleans-Scripts/config/perms.cfg
+    dest: ./config/perms.cfg
+
+  - action: move_path
+    src: ./tmp/McKleans-Scripts/myLogo.png
     dest: ./myLogo.png
 
   # Prepare Database
   - action: connect_database
   - action: query_database
-    file: ./tmp/qbcore/qbcore.sql
+    file: ./tmp/McKleans-Scripts/qbcore.sql
 
   # STANDALONE
   - action: download_github
@@ -45,7 +57,11 @@ tasks:
     dest: ./resources/[standalone]/menuv
     src: ./tmp/menuv.zip
 
-  - action: download_github
+  # You can actually replace bob74_ipl with mk-changeinterior
+  # https://mckleans-scripts.tebex.io/package/6529973
+  # This will allow you to turn off and on IPL's live in game without restarting your server
+
+  - action: download_github 
     dest: ./resources/[standalone]/bob74_ipl
     ref: master
     src: https://github.com/qbcore-framework/bob74_ipl
@@ -151,6 +167,14 @@ tasks:
     path: ./tmp/ox_doorlock.zip
   - action: unzip
     src: ./tmp/ox_doorlock.zip
+    dest: ./resources/[ox]
+
+  ## ox_target
+  - action: download_file
+    url: https://github.com/overextended/ox_target/releases/latest/download/ox_target.zip
+    path: ./tmp/ox_target.zip
+  - action: unzip
+    src: ./tmp/ox_target.zip
     dest: ./resources/[ox]
 
   # Downloading QBCore resources
@@ -316,6 +340,11 @@ tasks:
     ref: main
     src: https://github.com/qbcore-framework/qb-interior
 
+  - action: download_github
+    dest: ./resources/[qb]/qb-loading
+    ref: main
+    src: https://github.com/qbcore-framework/qb-loading
+
   
 
   - action: waste_time # prevent github throttling
@@ -324,10 +353,6 @@ tasks:
   
   # Scripts
 
-  - action: download_github
-    dest: ./resources/[standalone]/chat
-    ref: main
-    src: https://github.com/Brichka-Dv/chat
 
   # Redline Studios
 
@@ -345,16 +370,16 @@ tasks:
     src: https://github.com/Project-Sloth/ps-adminmenu
 
   - action: download_github
-    dest: ./resources/[Project-Sloth]/ps-hud
+    dest: ./resources/[hud]/ps-hud
     ref: main
     src: https://github.com/Project-Sloth/ps-hud
 
-  - action: download_github
+  - action: download_github ## I personally prefer using nolag-properties
     dest: ./resources/[Project-Sloth]/ps-housing
     ref: main
     src: https://github.com/Project-Sloth/ps-housing
 
-  - action: download_github
+  - action: download_github ## I personally prefer using nolag-properties
     dest: ./resources/[Project-Sloth]/ps-realtor
     ref: main
     src: https://github.com/Project-Sloth/ps-realtor
@@ -432,11 +457,6 @@ tasks:
     ref: main
     src: https://github.com/Project-Sloth/ps-donator
 
-  - action: download_github
-    dest: ./resources/[Project-Sloth]/ps-loading
-    ref: main
-    src: https://github.com/Project-Sloth/ps-loading
-
   # Renewed Scripts
   
   - action: download_github
@@ -462,7 +482,7 @@ tasks:
   - action: waste_time # prevent github throttling
     seconds: 10
 
-  # Jixels Scripts
+  # Jim Scripts
 
   - action: download_github
     dest: ./resources/[standalone]/jim_bridge
@@ -542,12 +562,73 @@ tasks:
     ref: main
     src: https://github.com/McKleans-Scripts/mk-ammoboxes
 
+  # ooSayeroo Scripts
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-logs
+    ref: main
+    src: https://github.com/oosayeroo/sayer-logs
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-blipcreator
+    ref: main
+    src: https://github.com/oosayeroo/sayer-blipcreator
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/oosayeroo/sayer-blipcreator/player_blips.sql
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-gangs
+    ref: main
+    src: https://github.com/oosayeroo/sayer-gangs
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/oosayeroo/sayer-gangs/sayer_gangs.sql
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-crafting
+    ref: main
+    src: https://github.com/oosayeroo/sayer-crafting
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/oosayeroo/sayer-crafting/sayer_crafting.sql
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-pcrepairs
+    ref: main
+    src: https://github.com/oosayeroo/sayer-pcrepairs
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-drugdeliveries
+    ref: main
+    src: https://github.com/oosayeroo/sayer-drugdeliveries
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-bbq
+    ref: main
+    src: https://github.com/oosayeroo/sayer-bbq
+
+  - action: download_github
+    dest: ./resources/[oosayeroo]/sayer-elevator
+    ref: main
+    src: https://github.com/oosayeroo/sayer-elevator
+
+  - action: waste_time # prevent github throttling
+    seconds: 10
+
   # Dom/Bostra Scripts
 
   - action: download_github
     dest: ./resources/[mustachedom]/md-drugs
     ref: main
     src: https://github.com/Mustachedom/md-drugs
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/Mustachedom/md-drugs/mddrugs.sql
 
   - action: download_github
     dest: ./resources/[mustachedom]/md-houserobberies
@@ -559,18 +640,38 @@ tasks:
     ref: main
     src: https://github.com/Mustachedom/md-fishing
 
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/Mustachedom/md-drugs/fishing.sql
+
 
   # Illenium Scripts
 
   - action: download_github
-    dest: ./resources/[clothes]/illenium-appearance
+    dest: ./resources/[main]/illenium-appearance
     ref: main
-    src: https://github.com/iLLeniumStudios/illenium-appearance
+    src: https://github.com/iLLeniumStudios/illenium-appearance/releases/latest
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/iLLeniumStudios/illenium-appearance/management_outfits.sql
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/iLLeniumStudios/illenium-appearance/player_outfit_codes.sql
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/iLLeniumStudios/illenium-appearance/player_outfits.sql
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/iLLeniumStudios/illenium-appearance/playerskins.sql
 
   # TNJ Development
 
   - action: download_github
-    dest: ./resources/[clothes]/qb-masks
+    dest: ./resources/[main]/qb-masks
     ref: main
     src: https://github.com/tnj-development/qb-masks
 
